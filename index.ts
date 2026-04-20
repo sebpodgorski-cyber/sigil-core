@@ -1,46 +1,39 @@
 /**
- * @sovereign/sigil-extractor-contract
+ * @sovereign/sigil-core
  *
- * Public surface for Layer A consumers and Layer B implementors.
+ * Public surface. Layer A modules consume this package.
  */
 
-// Interface and types — what Layer A imports.
 export type {
-  Extractor,
-  ExtractorKind,
-  ExtractorCapabilities,
-  RawUtterance,
-  FactCandidate,
+  Event,
+  Fact,
+  Pattern,
   FactType,
-  ExtractionResult,
-  RoutingDecision,
-  PrivacyMode,
+  Layer,
+  Phase,
+  SigilDID,
+  Ed25519Signature,
+  ISOTimestamp,
+  Falsification,
+  AlternativeInterpretation,
+  Unsigned,
 } from './types.js';
 
-// Schemas — for boundary validation.
 export {
-  FactTypeSchema,
-  RawUtteranceSchema,
-  FactCandidateSchema,
-  ExtractionResultSchema,
-  CloudFactArraySchema,
-} from './schemas.js';
+  canonicalize,
+  signObject,
+  verifyObject,
+  didFromPublicKey,
+  publicKeyFromDid,
+  InMemoryKeyProvider,
+} from './signing.js';
+export type { KeyProvider } from './signing.js';
 
-// Extractor implementations.
-export { CloudExtractor } from './extractors/cloud.js';
-export type { CloudExtractorConfig } from './extractors/cloud.js';
-export { LocalExtractor } from './extractors/local.js';
+export { normalize, signEvent } from './normalization.js';
+export type {
+  NormalizationOptions,
+  NormalizationResult,
+} from './normalization.js';
 
-// Routing.
-export { RoutingClassifier, DEFAULT_THRESHOLDS } from './router.js';
-export type { RoutingClassifierConfig } from './router.js';
-
-// Redaction and audit.
-export { redactPII, assertFullyRedacted } from './redaction.js';
-export type { RedactionKind, RedactionResult } from './redaction.js';
-export {
-  FileAuditLogger,
-  InMemoryAuditLogger,
-  hashUtterance,
-} from './audit.js';
-export type { AuditLogger, AuditEvent, AuditEventType } from './audit.js';
+export type { MemoryStore, FactQuery, PatternQuery } from './memory.js';
+export { InMemoryStore } from './memory.js';
