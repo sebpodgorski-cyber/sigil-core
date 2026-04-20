@@ -1,0 +1,11 @@
+{
+  "name": "@sovereign/sigil-core",
+  "version": "0.0.1",
+  "description": "SIGIL Memory Core — local-first normalized cognitive runtime",
+  "main": "index.ts",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.ts"
+  }
+}
